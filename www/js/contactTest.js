@@ -4,10 +4,10 @@
 
 var myapp;
 if (myapp === undefined) {
-    myapp = angular.module('myapp', ['ionic', 'ngCordova']);
+    myapp = angular.module('myapp', ['ionic']);
 }
    
-myapp.controller('bindControl', function ($http, $timeout, $cordovaContacts) {
+myapp.controller('bindControl', function ($http, $timeout) {
     'use strict';
 //    var bindCtrl = this;
 //
@@ -25,12 +25,10 @@ myapp.controller('bindControl', function ($http, $timeout, $cordovaContacts) {
 //    }, false);
     
     document.addEventListener("deviceready", function () {
-        $cordovaContacts.find({
-        }).then(function (contacts) {
+        navigator.contacts.find(['id', 'displayName'], function (contacts) {
             alert('Found ' + contacts.length + ' contacts.');
         }, function (err) {
             alert(err);
         });
-        alert('event listener added');
     }, false);
 });
