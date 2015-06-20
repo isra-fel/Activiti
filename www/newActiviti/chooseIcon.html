@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="../css/ionic.css">
+        <link rel="stylesheet" type="text/css" href="../css/newActiviti/chooseIcon.css">
+        <link rel="stylesheet/less" type="text/css" href="../css/less/activiti.less">
+        <script src="../js/less/less.min.js"></script>
+        <script src="../js/ionic.bundle.js"></script>
+        <script src="../js/newActiviti/chooseIcon.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <title>选择图标</title>
+    </head>
+    <body ng-app="myapp" ng-controller="iconCtrl">
+        <ion-header-bar class="bar bar-header bar-stable">
+            <a ng-click="onBackClicked();" class="button button-icon icon ion-ios-arrow-back"></a>
+            <h2 class="title">选择图标</h2>
+        </ion-header-bar>
+        
+        <ion-content>
+            {{icon.allIcons[0].icons[0].code}}
+            <p class="intro">
+                Activiti&#153;提供了一系列图标来帮您定制活动<br/>
+                请在下方挑选一个
+            </p>
+            <ul ng-repeat="iconCatagory in allIcons" id="{{iconCatagory.catagory}}">
+                <li ng-repeat="icon in iconCatagory.icons" ng-click="chooseIcon(icon);" class="icon {{icon.code}} {{icon.active?'active':''}}"></li>
+            </ul>
+        </ion-content>
+    </body>
+</html>
+<!--图标皆来自http://ionicons.com/-->

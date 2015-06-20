@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <link rel="stylesheet/less" type="text/css" href="css/less/activiti.less">
+        <script src="js/less/less.min.js"></script>
+        <script src="js/ionic.bundle.js"></script>
+        <script src="js/vote.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <title>投票</title>
+    </head>
+    <body ng-app="myapp" ng-controller="voteCtrl as vote">
+        <ion-header-bar class="bar bar-header bar-royal">
+            <a href="activitiDetail.html" class="button button-icon icon ion-ios-arrow-back"></a>
+            <h1 class="title">投票给：{{vote.activiti.title}}</h1>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div class="item">投票截至：{{vote.activiti.deadline}}</div>
+                
+                <div class="item item-divider">我要</div>
+                <label class="item item-radio">
+                    <input type="radio" name="voteGroup" ng-model="vote.status" value="yes" checked />
+                    <div class="item-content">
+                        参加！
+                    </div>
+                    <i class="radio-icon ion-checkmark checkmark"></i>
+                </label>
+                <label class="item item-radio">
+                    <input type="radio" name="voteGroup" ng-model="vote.status" value="no" />
+                    <div class="item-content">
+                        不参加！
+                    </div>
+                    <i class="radio-icon ion-checkmark checkmark"></i>
+                </label>
+                
+                <div class="item item-divider" ng-hide="vote.status=='no'">时间 <span class="icon ion-help unselected-warning" ng-hide="vote.timeChosen"></span></div>
+                <a class="item" href="#" ng-repeat="timeChoice in vote.timeChoices" ng-click="vote.chooseTime(timeChoice);" ng-hide="vote.status=='no'">{{timeChoice.time}} ({{vote.countTime(timeChoice.time)}}人)<span class="plusOne" ng-show="timeChoice.chosen"> +1</span></a>
+                
+                <div class="item item-divider" ng-hide="vote.status=='no'">地点 <span class="icon ion-help unselected-warning" ng-hide="vote.placeChosen"></span></div>
+                <a class="item" href="#" ng-repeat="placeChoice in vote.placeChoices" ng-click="vote.choosePlace(placeChoice);" ng-hide="vote.status=='no'">{{placeChoice.place}} ({{vote.countPlace(placeChoice.place)}}人)<span class="plusOne" ng-show="placeChoice.chosen"> +1</span></a>
+                
+                <div class="item item-divider" ng-hide="vote.status=='no'">nlp</div>
+                <label class="item item-input" ng-hide="vote.status=='no'">
+                    <span class="input-label">nlp</span>
+                    <input type="text" ng-model="vote.nlp">
+                </label>
+            </div>
+        </ion-content>
+        
+        <ion-footer-bar class="bar bar-footer bar-calm">
+            <h1 class="title" ng-click="vote.onSubmit();">确认投票</h1>
+        </ion-footer-bar>
+    </body>
+</html>

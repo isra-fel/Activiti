@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <link rel="stylesheet/less" type="text/css" href="css/less/activiti.less">
+        <script src="js/less/less.min.js"></script>
+        <script src="js/ionic.bundle.js"></script>
+        <script src="js/activitiDetail.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <title>活动详情</title>
+    </head>
+    <body ng-app="myapp" ng-controller="detailCtrl as detail">
+        <ion-header-bar class="bar bar-header bar-royal">
+            <a href="home.html" class="button button-icon icon ion-ios-arrow-back"></a>
+            <h1 class="title">{{detail.activiti.title}}</h1>
+            <div class="button button-icon icon {{detail.activiti.icon}}"></div>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div class="item"><h2 class="description">{{detail.activiti.description}}</h3></div>
+                <div class="item">投票截至：{{detail.activiti.deadline}}</div>
+                
+                <div class="item item-divider">人数</div>
+                <a class="item" href="#">已投票：{{detail.votes.length}}人</a>
+                <a class="item" href="#">未投票：{{detail.activiti.friendsInvited.length - detail.votes.length}}人</a>
+                
+                <div class="item item-divider">时间</div>
+                <a class="item" href="#" ng-repeat="time in detail.activiti.activityChoiceTimes">{{time}} ({{detail.countTime(time)}}人)</a>
+                
+                <div class="item item-divider">地点</div>
+                <a class="item" href="#" ng-repeat="place in detail.activiti.activityChoicePlaces">{{place}} ({{detail.countPlace(place)}}人)</a>
+            </div>
+            <button class="button button-block button-calm">
+                决定时间和地点
+            </button>
+        </ion-content>
+        <ion-footer-bar class="bar bar-footer bar-calm">
+            <h1 class="title" ng-click="detail.onVoteClick();">我要投票</h1>
+        </ion-footer-bar>
+    </body>
+</html>

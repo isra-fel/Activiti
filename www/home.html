@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <link rel="stylesheet/less" type="text/css" href="css/less/activiti.less">
+        <script src="js/less/less.min.js"></script>
+        <script src="js/ionic.bundle.js"></script>
+        <script src="js/home.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <title>Activiti</title>
+    </head>
+    <body ng-app="myapp" ng-controller="homeCtrl as home" ng-show="home.receiveDone">
+        <ion-tabs class="tabs-stable">
+            <ion-tab title="活动">
+                <ion-header-bar class="bar bar-header bar-stable">
+                    <h1 class="title">Activiti</h1>
+                    <a href="newActiviti.html" class="button button-icon icon ion-plus-round"></a>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+                        <div class="item item-divider" ng-click="home.listCreatedHidden = !home.listCreatedHidden;">
+                            发起的活动
+                        </div>
+                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listCreatedHidden" ng-repeat="activiti in home.listCreated | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                        
+                        <div class="item item-divider" ng-click="home.listJoinedHidden = !home.listJoinedHidden;">
+                            受邀的活动
+                            <span class="badge badge-assertive" ng-hide="!home.listNew.length">{{home.listNew.length}}</span>
+                        </div>
+                        <a class="item item-icon-left animate-hide activiti-new" href="#" ng-hide="home.listJoinedHidden" ng-repeat="activiti in home.listNew | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listJoinedHidden" ng-repeat="activiti in home.listJoined | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                        
+                        <div class="item item-divider" ng-click="home.listOutOfDateHidden = !home.listOutOfDateHidden;">
+                            过期的活动
+                        </div>
+                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listOutOfDateHidden" ng-repeat="activiti in home.listOutOfDate | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                    </div>
+                </ion-content>
+            </ion-tab>
+
+            <ion-tab title="好友">
+                <ion-header-bar class="bar bar-header bar-stable">
+                    <h1 class="title">Activiti</h1>
+                    <a href="newActiviti.html" class="button button-icon icon ion-plus-round"></a>
+                </ion-header-bar>
+                <ion-content>
+                    <div class="list">
+                        <a class="item item-avatar" href="#">
+                            <img src="img/nb.jpg">
+                            <h2 class="title">NewBalance中国</h2>
+                        </a>
+                        <a class="item item-avatar" href="#">
+                            <img src="img/tr.jpg">
+                            <h2 class="title">图灵教育</h2>
+                        </a>
+                        <a class="item item-avatar" href="#">
+                            <img src="img/xy.jpg">
+                            <h2 class="title">星云散落</h2>
+                        </a>
+                        <a class="item item-avatar" href="#">
+                            <img src="img/ap.jpg">
+                            <h2 class="title">阿飘</h2>
+                        </a>
+                        <a class="item item-avatar" href="#">
+                            <img src="img/bx.jpg">
+                            <h2 class="title">白雪上的影子</h2>
+                        </a>
+                    </div>
+                </ion-content>
+            </ion-tab>
+            
+            <ion-tab title="设置">
+                <ion-header-bar class="bar bar-header bar-stable">
+                    <h1 class="title">Activiti</h1>
+                </ion-header-bar>
+                
+                <ion-content scroll="false">
+                    <div class="list card">
+                        <div class="item item-img avatar-container">
+                            <a href="changeAvatar.html"><img ng-src="img/avatar-large.jpg" alt="avatar" class="avatar-full"></a>
+                        </div>
+                        <a class="item item-icon-left" href="bindPhone.html">
+                            <i class="icon ion-iphone"></i>
+                            绑定手机号
+                        </a>
+                        <a class="item item-icon-left" href="" ng-click="home.logout();">
+                            <i class="icon ion-close-round"></i>
+                            注销
+                        </a>
+                    </div>
+                </ion-content>
+            </ion-tab>
+        </ion-tabs>
+    </body>
+</html>

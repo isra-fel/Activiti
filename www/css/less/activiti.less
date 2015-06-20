@@ -1,0 +1,75 @@
+@align-right-padding: 14px;
+@royal: #886aea;
+
+*, .description, .title, .tab-title {
+    font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;
+}
+
+.plusOne, .checkmark {
+    color: deepskyblue;
+    font-family: fantasy;
+}
+
+.align-right {
+    position: absolute;
+    right: 0px;
+}
+
+.unselected-warning {
+    color: floralwhite;
+    .align-right;
+    padding-right: @align-right-padding + 1em;
+}
+
+.plusOne {
+    .align-right;
+    padding-right: @align-right-padding + 1em;
+}
+
+.item-divider {
+//    background-color: @royal;
+//    color: white;
+    font-weight: bold;
+}
+
+/* animation */
+.animate-hide {
+  -webkit-transition: all ease-out 0.1s;
+  transition: all ease-out 0.1s;
+  opacity: 1;
+}
+
+.animate-hide.ng-hide {
+  opacity: 0;
+  padding: 0;
+}
+
+/* new activiti */
+a.activiti-new {
+    background-color: palegreen;
+}
+
+textarea {
+    line-height: 180%;
+}
+
+/* odd list */
+.odd-list *:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+
+.odd-list *:last-child {
+    background-color: white;
+}
+
+/* avatar */
+.avatar-full {
+    width: 70%;
+}
+
+.avatar-container {
+    text-align: center;
+}

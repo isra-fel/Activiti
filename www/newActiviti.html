@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/ionic-datepicker/dist/style.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/ionic-timepicker/dist/style.css">
+        <link rel="stylesheet/less" type="text/css" href="css/less/activiti.less">
+        <script src="js/less/less.min.js"></script>
+        <script src="js/ionic.bundle.js"></script>
+        <script src="bower_components/ionic-datepicker/dist/templates.js"></script>
+        <script src="bower_components/ionic-timepicker/dist/templates.js"></script>
+        <script src="bower_components/ionic-datepicker/src/ionic-datepicker.js"></script>
+        <script src="bower_components/ionic-timepicker/src/ionic-timepicker.js"></script>
+        <script src="js/newActiviti.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <title>新建活动</title>
+    </head>
+    <body ng-app="myapp" ng-controller="newActivitiCtrl as newAct">
+        <ion-header-bar class="bar bar-header bar-stable">
+            <a class="button button-icon icon ion-ios-arrow-back" ng-click="newAct.onBackClick();"></a>
+            <h1 class="title">新建活动</h1>
+            <a class="button button-icon {{newAct.newActiviti.icon || 'ion-pricetag'}}" ng-click="newAct.onIconClick();"></a>
+        </ion-header-bar>
+        
+        <ion-content>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">
+                        标题
+                    </span>
+                    <input type="text" ng-model="newAct.newActiviti.title" ng-change="newAct.storeActiviti();" />
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">描述</span>
+                    <textarea rows="3" ng-model="newAct.newActiviti.description" ng-change="newAct.storeActiviti();"></textarea>
+                </label>
+                <a class="item button button-full icon-right ion-chevron-right button-light" ng-click="newAct.onTimeClick();">
+                    备选时间
+                </a>
+                <a class="item button button-full icon-right ion-chevron-right button-light" ng-click="newAct.onPlaceClick();">
+                    备选地点
+                </a>
+                <a class="item button button-full icon-right ion-chevron-right button-light" ng-click="newAct.onFriendClick();">
+                    邀请好友
+                </a>
+                <div class="item" style="text-align:center;">
+                    截止时间 
+                    <span style="color:red;">
+                        <ionic-datepicker idate="newAct.currentDate" disablepreviousdates="true" callback="newAct.datePickerCallback">
+                            <u>{{newAct.currentDate | date:'yyyy-M-d'}}</u>
+                        </ionic-datepicker>
+                        <ionic-timepicker etime="newAct.slots.epochTime" format="newAct.slots.format" step="newAct.slots.step" callback="newAct.timePickerCallback">
+                            <u>{{newAct.slots.epochTime*1000+16*3600*1000 | date:'HH:mm'}}</u>
+                        </ionic-timepicker>
+                    </span>
+                </div>
+            </div>
+        </ion-content>
+        <ion-footer-bar class="bar bar-footer bar-calm">
+            <h1 class="title" ng-click="newAct.onSubmit();">新建</h1>
+        </ion-footer-bar>
+    </body>
+</html>

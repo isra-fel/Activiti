@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <script src="js/init.js"></script>
+        <script src="js/ionic.bundle.js"></script>
+        <script src="js/index.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body ng-app="myapp" ng-controller="signupCtrl as signup">
+        <ion-header-bar class="bar bar-header bar-stable">
+            <h1 class="title">注册Activiti</h1>
+        </ion-header-bar>
+        
+        <ion-content scroll="false">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">用户名</span>
+                    <input type="text" autofocus ng-model="signup.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">昵称</span>
+                    <input type="text" ng-model="signup.nickname">
+                </label>
+                
+                <label class="item item-input">
+                    <span class="input-label">密码</span>
+                    <input type="password" ng-model="signup.password">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">确认密码</span>
+                    <input type="password" ng-model="signup.passwordConfirmed">
+                </label>
+            </div>
+            <a href="login.html">已有账号？点此登陆</a>
+        </ion-content>
+            
+        <ion-footer-bar class="bar bar-footer bar-calm">
+            <h1 class="title" ng-click="signup.onSubmit()">注册</h1>
+        </ion-footer-bar>
+    </body> 
+</html>

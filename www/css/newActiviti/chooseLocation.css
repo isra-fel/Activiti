@@ -1,0 +1,11 @@
+ion-item {
+    padding-left: 2em !important;
+}
+
+ion-item:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+
+ion-item:last-child {
+    background-color: white;
+}
