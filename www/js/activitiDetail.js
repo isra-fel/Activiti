@@ -56,6 +56,8 @@ myapp.controller('detailCtrl', function($http, $timeout) {
     };
     
     detail.onVoteClick = function () {
+        window.localStorage.votedActiviti = JSON.stringify(detail.activiti);
+        window.localStorage.votes = JSON.stringify(detail.votes);
         window.location.href = 'vote.html';
     };
 });

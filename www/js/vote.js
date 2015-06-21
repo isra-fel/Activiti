@@ -17,61 +17,15 @@ myapp.controller('voteCtrl', function($http, $timeout) {
     vote.status = "yes";
     
     vote.user = JSON.parse(window.localStorage.loggedInUser || '{}');
-    vote.activiti = 
-    vote.activiti = {
-        "hostActivityRel": [{"username":"user1", "activityId":"123456"}],
-        "activityId" : "123456",
-        "title" : "玩玩玩",
-        "description" : "五一快到了，大家一起玩吧！",
-        "deadline" : "2015-04-09 24:00:00",
-        "status" : "notVoted",
-        "activityChoiceTimes" : [
-            "2015-04-10 12:00:00",
-            "2015-04-10 18:00:00",
-            "2015-04-11 18:00:00"
-        ],
-        "activityChoicePlaces" : [
-            "三号湾",
-            "五角场",
-            "世纪公园"
-        ],
-        "friendsInvited" : [
-            "friend1",
-            "friend2",
-            "friend3",
-            "friend4"
-        ],
-        "icon": 'ion-plane'
-    };
+    vote.activiti = JSON.parse(window.localStorage.votedActiviti);
+    vote.votes = JSON.parse(window.localStorage.votes);
+    
     vote.timeChoices = vote.activiti.activityChoiceTimes.map(function (elem) {
         return { "time": elem, "chosen": false};
     });
     vote.placeChoices = vote.activiti.activityChoicePlaces.map(function (elem) {
         return { "place": elem, "chosen": false};
     });
-    vote.votes = [
-        {
-            "activityId" : "123456",
-            "username" : "friend1",
-            "timeChoice" : "2015-04-10 12:00:00",
-            "placeChoice" : "三号湾",
-            "status" : "yes"
-        },
-        {
-            "activityId" : "123456",
-            "username" : "friend2",
-            "timeChoice" : "2015-04-10 18:00:00",
-            "placeChoice" : "三号湾",
-            "status" : "yes"
-        },
-        {
-            "activityId" : "123456",
-            "username" : "friend3",
-            "timeChoice" : "",
-            "placeChoice" : "",
-            "status" : "no"
-        }
-    ];
     
     vote.countTime = function (time) {
         return vote.votes.filter(function(e) {
