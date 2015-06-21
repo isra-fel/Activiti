@@ -21,8 +21,6 @@ myapp.controller('bindControl', function ($http, $timeout) {
               'Timestamp: '         + position.timestamp                + '\n');
     };
 
-    // onError Callback receives a PositionError object
-    //
     function onError(error) {
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
@@ -30,14 +28,14 @@ myapp.controller('bindControl', function ($http, $timeout) {
 
     
     document.addEventListener("deviceready", function () {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-            timeout: 5000,
-            enableHighAccuracy: false
-        });
-//        navigator.contacts.find(['id', 'displayName'], function (contacts) {
-//            alert('Found ' + contacts.length + ' contacts.');
-//        }, function (err) {
-//            alert(err);
+//        navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+//            timeout: 5000,
+//            enableHighAccuracy: false
 //        });
+        navigator.contacts.find(['id', 'displayName'], function (contacts) {
+            alert('Found ' + contacts.length + ' contacts.\nThe first one: ', JSON.stringify(contacts[0]));
+        }, function (err) {
+            alert(err);
+        });
     }, false);
 });
