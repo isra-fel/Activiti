@@ -126,7 +126,11 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
         
         document.addEventListener('deviceready', function() {
             navigator.contacts.find(['id', 'displayName'], function (contacts) {
-                addFriendsByPhoneNumber(parseCordovaContacts(contacts));
+                try {
+                    addFriendsByPhoneNumber(parseCordovaContacts(contacts));
+                } catch (err) {
+                    alert(JSON.stringify(err));
+                }
             });
         }, false);
     };
