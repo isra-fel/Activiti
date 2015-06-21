@@ -89,11 +89,30 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
             text: '<b>确认</b>',
             type: 'button-positive',
             onTap: function(e) {
+//                friends.addFriendsFake();
                 friends.addFriends();
             }
           }
         ]
       });
+    };
+    
+    friends.addFriendsFake = function () {
+        $http.jsonp(window.localStorage.rootUrl + '/addFriendsByPhoneNumber.action?callback=JSON_CALLBACK',
+                    {
+            "params": {
+                "username": friends.user.username,
+                "password": friends.user.password,
+                "friendsPhoneNumbers": ["12345678901", "12345678910"]
+            }
+        }).success(function (data) {
+            if (!data.error) {
+                alert('导入了' + (data.listOfFriends.length - friends.listOfFriends.length) + '个好友！');
+                friends.listOfFriends = data.listOfFriends;
+            } else {
+                alert(data.error);
+            }
+        });
     };
     
     friends.addFriends = function () {
@@ -129,7 +148,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
                 try {
                     addFriendsByPhoneNumber(parseCordovaContacts(contacts));
                 } catch (err) {
-                    alert(JSON.stringify(parseCordovaContacts(contacts)));
+                    alert(JSON.stringify(contacts));
                 }
             });
         }, false);
