@@ -77,7 +77,7 @@
                 <ion-content scroll="false">
                     <div class="list card">
                         <div class="item item-img avatar-container">
-                            <a href="changeAvatar.html"><img ng-src="img/avatar-large.jpg" alt="avatar" class="avatar-full"></a>
+                            <a href="changeAvatar.html"><img ng-src="img/{{home.user.avatarURL || 'default.png'}}" alt="avatar" class="avatar-full"></a>
                         </div>
                         <a class="item item-icon-left" href="bindPhone.html">
                             <i class="icon ion-iphone"></i>

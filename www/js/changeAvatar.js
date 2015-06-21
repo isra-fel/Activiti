@@ -12,22 +12,21 @@ myapp.controller('avatarControl', function ($http, $timeout) {
     var avatarCtrl = this;
     
     avatarCtrl.user = window.localStorage.loggedInUser ? JSON.parse(window.localStorage.loggedInUser) : {};
-    avatarCtrl.newPhoneNumber = "";
+    avatarCtrl.newAvatar = null;
+    
+    avatarCtrl.avatars = [
+        {title: "rawshader", src: "rawshader.png", three: true},
+        {title: "unit", src: "unit.png", three: true},
+        {title: "drawcall", src: "drawcall.png", three: true},
+        {title: "lines", src: "lines.png", three: true},
+        {title: "prof", src: "prof.png", three: true}
+    ];
     
     avatarCtrl.onSubmit = function () {
         if (avatarCtrl.validate()) {
             avatarCtrl.sendRequest();
         } else {
             alert(avatarCtrl.validate.err);
-        }
-    };
-    
-    avatarCtrl.validate = function () {
-        if (avatarCtrl.newPhoneNumber.match(/^\d{11}$/)) {
-            return true;
-        } else {
-            avatarCtrl.validate.err = '请输入正确的手机号';
-            return false;
         }
     };
     

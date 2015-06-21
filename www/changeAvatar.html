@@ -21,16 +21,9 @@
         </ion-header-bar>
         <ion-content>
             <div class="list">
-                <div class="item" ng-hide="!bindCtrl.user.phoneNumber">已绑定的手机号：<span class="phoneNumber">18712354654</span></div>
-                <div class="item assertive">还未绑定手机号（绑定手机号以添加好友）</div>
-                <label class="item item-input">
-                    <span class="input-label">您的手机号：</span>
-                    <input type="tel" ng-model="bindCtrl.newPhoneNumber" />
-                </label>
-            </div>
         </ion-content>
         <ion-footer-bar class="bar bar-footer bar-calm">
-            <h1 class="title" ng-hide="bindCtrl.user.phoneNumber" ng-click="bindCtrl.onSubmit();">绑定</h1>
+            <h1 class="title" ng-click="avatarCtrl.onSubmit();">选择</h1>
         </ion-footer-bar>
     </body>
 </html>
