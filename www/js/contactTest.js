@@ -33,7 +33,7 @@ myapp.controller('bindControl', function ($http, $timeout) {
 //            enableHighAccuracy: false
 //        });
         navigator.contacts.find(['id', 'displayName'], function (contacts) {
-            alert('Found ' + contacts.length + ' contacts.\nThe first one: ', JSON.stringify(contacts[0]));
+            alert('Found ' + contacts.length + ' contacts.\nThe first one: '+ JSON.stringify(contacts[0]));
         }, function (err) {
             alert(err);
         });
