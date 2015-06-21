@@ -129,7 +129,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
                 try {
                     addFriendsByPhoneNumber(parseCordovaContacts(contacts));
                 } catch (err) {
-                    alert(JSON.stringify(err));
+                    alert(JSON.stringify(contacts));
                 }
             });
         }, false);
