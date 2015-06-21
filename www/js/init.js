@@ -11,4 +11,5 @@ if (window.localStorage.loggedInUser) {
     window.location.href = 'home.html';
 }
 
-window.location.href = 'contactTest.html';
+//test only
+//window.location.href = 'contactTest.html';

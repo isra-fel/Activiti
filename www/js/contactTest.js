@@ -25,6 +25,16 @@ myapp.controller('bindControl', function ($http, $timeout) {
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+    
+    function parseCordovaContacts(cordovaConcats) {
+        return cordovaConcats.map(function (e) {
+            return {"name": e.displayName,
+                   "phoneNumber": (e.phoneNumbers.length ? e.phoneNumbers[0].value : null) };
+        }).filter(function (e) {
+            //filter out 'undefined's
+            return e;
+        });
+    }
 
     
     document.addEventListener("deviceready", function () {
