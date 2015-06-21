@@ -30,7 +30,10 @@ myapp.controller('bindControl', function ($http, $timeout) {
 
     
     document.addEventListener("deviceready", function () {
-        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+            timeout: 5000,
+            enableHighAccuracy: false
+        });
 //        navigator.contacts.find(['id', 'displayName'], function (contacts) {
 //            alert('Found ' + contacts.length + ' contacts.');
 //        }, function (err) {
