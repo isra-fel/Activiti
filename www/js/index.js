@@ -71,8 +71,8 @@ myapp.controller('signupCtrl', function ($http, $timeout) {
     
     signup.sendRequest = function () {
         var jsonpTimeout = $timeout(function () {
-            alert('服务器未响应！');
-        }, 13000);
+//            alert('服务器未响应！');
+        }, Number(window.localStorage.timeOut));
         $http.jsonp(window.localStorage.rootUrl + '/register.action?callback=JSON_CALLBACK',
                     {
             "params": {

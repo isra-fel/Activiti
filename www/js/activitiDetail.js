@@ -15,8 +15,8 @@ myapp.controller('detailCtrl', function($http, $timeout) {
     
     detail.sendRequest = function() {
         var jsonpTimeout = $timeout(function () {
-            alert('服务器未响应！');
-        }, 13000);
+//            alert('服务器未响应！');
+        }, Number(window.localStorage.timeOut));
         $http.jsonp(window.localStorage.rootUrl + '/getActivityDetails.action?callback=JSON_CALLBACK',
                   {
             "params": {

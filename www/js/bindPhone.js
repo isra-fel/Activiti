@@ -19,7 +19,7 @@ myapp.controller('bindControl', function ($http, $timeout) {
             bindCtrl.sendRequest();
         } else {
             alert(bindCtrl.validate.err);
-        };
+        }
     };
     
     bindCtrl.validate = function () {
@@ -34,8 +34,8 @@ myapp.controller('bindControl', function ($http, $timeout) {
     bindCtrl.sendRequest = function () {
 //        console.log('phonenumber', bindCtrl.newPhoneNumber);
         var jsonpTimeout = $timeout(function () {
-            alert('服务器未响应！');
-        }, 13000);
+//            alert('服务器未响应！');
+        }, Number(window.localStorage.timeOut));
         $http.jsonp(window.localStorage.rootUrl + '/modifyUser.action?callback=JSON_CALLBACK',
                   {
             "params": {

@@ -113,8 +113,8 @@ myapp.controller('voteCtrl', function($http, $timeout) {
     
     vote.sendRequest = function () {
         var jsonpTimeout = $timeout(function () {
-            alert('服务器未响应！');
-        }, 13000);
+//            alert('服务器未响应！');
+        }, Number(window.localStorage.timeOut));
         $http.jsonp(window.localStorage.rootUrl + '/voteActivity.action?callback=JSON_CALLBACK',
                   {
             "params": {

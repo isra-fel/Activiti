@@ -53,8 +53,8 @@ myapp.controller('loginCtrl', function($http, $timeout) {
     
     login.sendRequest = function() {
         var jsonpTimeout = $timeout(function () {
-            alert('服务器未响应！');
-        }, 13000);
+//            alert('服务器未响应！');
+        }, Number(window.localStorage.timeOut));
         $http.jsonp(window.localStorage.rootUrl + '/login.action?callback=JSON_CALLBACK',
                   {
             "params": {
