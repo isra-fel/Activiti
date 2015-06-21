@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/ionic.css">
+        <script src="js/ionic.bundle.js"></script>
+        
+<!--        3D javascripts-->
+        <script src="3d/js/three.min.js"></script>
+        <script src="3d/js/dat.gui.min.js"></script>
+        <script src="3d/js/Detector.js"></script>
+        <script src="3d/js/OrbitControls.js"></script>
+        
+        <script src="js/previewAvatar.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        
+        <title>预览头像</title>
+    </head>
+    <body ng-app="myapp" ng-controller="previewControl as previewCtrl">
+        <ion-header-bar class="bar bar-header bar-royal">
+            <a href="changeAvatar.html" class="button button-icon icon ion-ios-arrow-back"></a>
+            <h1 class="title">预览头像</h1>
+        </ion-header-bar>
+        <ion-content style="background:black;">
+            <div id="container"></div>
+        </ion-content>
+    </body>
+</html>

@@ -21,6 +21,14 @@
         </ion-header-bar>
         <ion-content>
             <div class="list">
+                <a class="item item-thumbnail-left" href="#" ng-repeat="avatar in avatarCtrl.avatars" ng-click="avatarCtrl.chooseAvatar(avatar);">
+                    <img ng-src="img/{{avatar.src}}">
+                    <h2>{{avatar.title}}
+                        <span class="plusOne" ng-show="avatar.chosen"><i class="icon ion-checkmark"></i></span>
+                    </h2>
+                    <p ng-show="avatar.three" ng-click="avatarCtrl.preview(avatar);"><u>3D</u></p>
+                </a>
+            </div>
         </ion-content>
         <ion-footer-bar class="bar bar-footer bar-calm">
             <h1 class="title" ng-click="avatarCtrl.onSubmit();">选择</h1>

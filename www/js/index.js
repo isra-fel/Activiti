@@ -83,6 +83,7 @@ myapp.controller('signupCtrl', function ($http, $timeout) {
             "timeout": jsonpTimeout
         }).success(function (data, status, headers, config) {
             if (!data.error) {
+                data.user.avatarURL = data.user.icon;
                 window.localStorage.loggedInUser = JSON.stringify(data.user);
                 window.location.href = 'home.html';
             } else {
