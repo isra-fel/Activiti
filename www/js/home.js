@@ -117,7 +117,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
         
         function parseCordovaContacts(cordovaConcats) {
             return cordovaConcats.map(function (e) {
-                return e.phoneNumbers.length ? e.phoneNumbers[0].value : undefined;
+                return e.phoneNumbers ? (e.phoneNumbers.length ? e.phoneNumbers[0].value : undefined) : undefined;
             }).filter(function (e) {
                 //filter out 'undefined's
                 return e;
@@ -129,7 +129,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
                 try {
                     addFriendsByPhoneNumber(parseCordovaContacts(contacts));
                 } catch (err) {
-                    alert(JSON.stringify(contacts));
+                    alert(JSON.stringify(parseCordovaContacts(contacts)));
                 }
             });
         }, false);
