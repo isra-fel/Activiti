@@ -20,80 +20,9 @@
             <h1 class="title">查看地图</h1>
             <div class="button button-icon icon {{detail.activiti.icon}}"></div>
         </ion-header-bar>
-        <ionic-content scroll="false">
+        <ion-content>
             <div id="allmap"></div>
             <div id="r-result"></div>
-        </ionic-content>
+        </ion-content>
     </body>
 </html>
-<script type="text/javascript">
-	// 基础功能
-	var map = new BMap.Map("allmap");          
-	map.centerAndZoom("上海");//初始化为上海。也可以传经纬度定位到当前位置。
-	map.enableScrollWheelZoom(true);//可以缩放
-	var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
-	var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
-	map.addControl(top_left_control);        
-	map.addControl(top_left_navigation); 
-	
-	
-	//循环加入各个参与者
-	var pt = [new BMap.Point(120.950, 30.550),new BMap.Point(120.950, 30.500)];
-	for(var i = 0;i < pt.length;i++){
-		var myIcon = new BMap.Icon("http://developer.baidu.com/map/jsdemo/img/fox.gif", new BMap.Size(300,157));
-		var marker = new BMap.Marker(pt[i],{icon:myIcon});  // 创建标注
-		map.addOverlay(marker);              // 将标注添加到地图中
-	}
-	
-
-
-
-	//搜索回调方法
-	var options = {      
-		  onSearchComplete: function(results){      
-			  if (local.getStatus() == BMAP_STATUS_SUCCESS){      
-					// 判断状态是否正确          
-					for (var i = 0; i < results.getCurrentNumPois(); i ++){      
-						var marker = new BMap.Marker(new BMap.Point(results.getPoi(i).point.lng,results.getPoi(i).point.lat));  
-						map.addOverlay(marker);
-						//给每个搜索结果添加点击事件
-						marker.addEventListener("click",attribute);
-					}           
-			  }      
-		  }    
-	 };    
-	//搜索目的地
-	var local = new BMap.LocalSearch(map, options);      
-	local.search("听潮南路米其林轮胎");
-	//点击后确认是否选为目的地
-	var dest;  
-	function attribute(e){
-		if(window.confirm('要将该处设为目的地吗？')){
-           	var p = e.target;
-			dest = new BMap.Point(p.getPosition().lng,p.getPosition().lat);
-			var marker = new BMap.Marker(dest); 
-			map.clearOverlays();
-			map.addOverlay(marker);       
-			//寻路
-			var walking = new BMap.WalkingRoute(map, {renderOptions:{map: map,  panel: "r-result",autoViewport: true} ,onSearchComplete: searchComplete});
-			walking.search(new BMap.Point(120.950, 30.550), dest);  	
-			
-        }else{
-             
-        	return false;
-        }	
-
-	}	 
-
-	//寻路回调方法
-	var searchComplete = function (results){
-		var plan = results.getPlan(0);
-		alert(plan.getDuration(true));  //获取时间
-		alert(plan.getDistance(true));  //获取距离
-		
-	}	 
-	
-	
-	
-
-</script>

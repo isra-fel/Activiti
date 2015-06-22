@@ -64,6 +64,7 @@ myapp.controller('homeCtrl', function($http, $timeout, $scope) {
         window.localStorage.removeItem('votedActiviti');
         window.localStorage.removeItem('votes');
         window.localStorage.removeItem('confirmedActiviti');
+        window.localStorage.removeItem('mappedActiviti');
         window.location.href = 'index.html';
     };
 });

@@ -43,7 +43,7 @@
                 <div class="item"><h2>举办人：{{detail.activiti.username}}</h2></div>
                 <div class="item item-divider">参加者</div>
                 <div class="item" ng-repeat="friend in detail.activiti.friendsInvited">{{friend.id.username}}</div>
-                <a href="#" class="item button button-block button-assertive">查看地图</a>
+                <a href="#" ng-click="detail.onMapClick();" class="item button button-block button-assertive">查看地图</a>
             </div>
         </ion-content>
         <ion-footer-bar class="bar bar-footer bar-calm">

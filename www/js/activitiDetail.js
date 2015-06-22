@@ -72,6 +72,11 @@ myapp.controller('detailCtrl', function($http, $timeout) {
         window.location.href = 'confirm.html';
     };
     
+    detail.onMapClick = function () {
+        window.localStorage.mappedActiviti = JSON.stringify(detail.activiti);
+        window.location.href = 'activitiMap.html';
+    }
+    
     detail.outOfDate = function (deadline) {
         var ddl = new Date(deadline);
         return Date.now() > ddl;
