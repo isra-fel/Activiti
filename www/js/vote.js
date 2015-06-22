@@ -58,14 +58,20 @@ myapp.controller('voteCtrl', function($http, $timeout) {
     };
     
     vote.onSubmit = function () {
-        if (vote.validate()) {
-            vote.sendRequest();
+        if (vote.nlp) {
+            nlp(vote.nlp, vote.activiti.activityChoiceTimes, vote.activiti.activityChoicePlaces, function (go, time, place) {
+                vote.sendRequest(go ? "yes" : "no", time, place);
+            });
         } else {
-            alert('请填写全信息');
+            if (vote.validate()) {
+                vote.sendRequest();
+            } else {
+                alert('请填写全信息');
+            }
         }
     };
     
-    vote.sendRequest = function () {
+    vote.sendRequest = function (status, timeChoice, placeChoice) {
         var jsonpTimeout = $timeout(function () {
 //            alert('服务器未响应！');
         }, Number(window.localStorage.timeOut));
@@ -75,9 +81,9 @@ myapp.controller('voteCtrl', function($http, $timeout) {
                 "username": vote.user.username,
                 "password": vote.user.password,
                 "activityId": vote.activiti.activityId,
-                "status": vote.status,
-                "timeChoice": vote.chosenTime.time,
-                "placeChoice": vote.chosenPlace.place
+                "status": status || vote.status,
+                "timeChoice": timeChoice || (vote.chosenTime ? vote.chosenTime.time : undefined),
+                "placeChoice": placeChoice || (vote.chosenPlace ? vote.chosenPlace.place : undefined)
             },
             "timeout": jsonpTimeout
         }).success(function(data, status, headers, config) {
@@ -90,6 +96,6 @@ myapp.controller('voteCtrl', function($http, $timeout) {
     };
     
     vote.validate = function () {
-        return vote.status && vote.chosenPlace && vote.chosenTime;
+        return vote.status && vote.chosenPlace && vote.chosenTime || vote.status === 'no';
     };
 });
