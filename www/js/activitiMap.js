@@ -98,8 +98,8 @@ myapp.controller('mapController', function () {
     
     mapCtrl.onRoutingComplete = function (results) {
 		var plan = results.getPlan(0);
-		alert(plan.getDuration(true) + '\n' + 
-              plan.getDistance(true));  //获取距离
+		alert('预估时间：' + plan.getDuration(true) + '\n' + 
+              '距离：' + plan.getDistance(true));  //获取距离
 	};
     
     mapCtrl.getLocation();
