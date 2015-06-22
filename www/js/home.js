@@ -55,6 +55,11 @@ myapp.controller('homeCtrl', function($http, $timeout) {
         window.localStorage.removeItem('newActiviti');
         window.localStorage.removeItem('newAct_currentDate');
         window.localStorage.removeItem('newAct_slots');
+        window.localStorage.removeItem('detailedActivitiId');
+        window.localStorage.removeItem('listOfFriends');
+        window.localStorage.removeItem('previewedAvatar');
+        window.localStorage.removeItem('votedActiviti');
+        window.localStorage.removeItem('votes');
         window.location.href = 'index.html';
     };
 });
@@ -63,6 +68,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
     'use strict';
     var friends = this;
     friends.user = JSON.parse(window.localStorage.loggedInUser || '{}');
+    
     friends.sendRequest = function () {
         $http.jsonp(window.localStorage.rootUrl + '/getFriendsList.action?callback=JSON_CALLBACK',
                   {
@@ -73,6 +79,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
         }).success(function (data) {
             if (!data.error) {
                 friends.listOfFriends = data.listOfFriends;
+                window.localStorage.listOfFriends = JSON.stringify(friends.listOfFriends);
             } else {
                 alert(data.error);
             }
@@ -128,6 +135,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
                 if (!data.error) {
                     alert('导入了' + (data.listOfFriends.length - friends.listOfFriends.length) + '个好友！');
                     friends.listOfFriends = data.listOfFriends;
+                    window.localStorage.listOfFriends = JSON.stringify(friends.listOfFriends);
                 } else {
                     alert(data.error);
                 }

@@ -109,6 +109,7 @@ myapp.controller('newActivitiCtrl', function ($scope, $http, $timeout) {
     };
     
     newAct.onFriendClick = function () {
+        newAct.storeActiviti();
         window.location.href = 'newActiviti/chooseFriends.html';
     };
     
