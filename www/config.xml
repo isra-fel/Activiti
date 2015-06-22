@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "cn.edu.fudan.activiti"
-        version   = "1.1.0">
+        version   = "1.2.0">
 
     <name>Activiti</name>
 
@@ -13,7 +13,7 @@
     </description>
 
     <author href="github.com/isra-fel" email="felix_liu@outlook.com">
-        adweb group SHCL
+        adweb group 6
     </author>
 
     <!-- Define the main entry-point to the application -->
