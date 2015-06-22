@@ -1,6 +1,8 @@
 /*jslint white:true*/
 /*global alert*/
 /*global angular*/
+/*global nlp*/
+
 var myapp;
 if (myapp === undefined) {
     myapp = angular.module('myapp', ['ionic']);
@@ -96,6 +98,6 @@ myapp.controller('voteCtrl', function($http, $timeout) {
     };
     
     vote.validate = function () {
-        return vote.status && vote.chosenPlace && vote.chosenTime || vote.status === 'no';
+        return (vote.status && vote.chosenPlace && vote.chosenTime) || vote.status === 'no';
     };
 });
