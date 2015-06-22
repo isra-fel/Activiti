@@ -39,6 +39,7 @@ myapp.controller('detailCtrl', function($http, $timeout) {
                 detail.activiti.activityChoiceTimes = data.activityChoiceTimes.map(function (elem) { return elem.time; });
                 detail.activiti.activityChoicePlaces = data.activityChoicePlaces.map(function (elem) { return elem.place; });
                 detail.activiti.friendsInvited = data.inviteActivityRels;
+                detail.activiti.confirmed = detail.activiti.activityDate && detail.activiti.activityPlace;
                 detail.createdByMe = detail.activiti.username === detail.user.username;
             } else {
                 alert(data.error);

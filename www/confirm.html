@@ -14,7 +14,7 @@
         
         <title>确认活动</title>
     </head>
-    <body ng-app="myapp" ng-controller="confirmCtrl as confirm">
+    <body ng-app="myapp" ng-controller="confirmControl as confirm">
         <ion-header-bar class="bar bar-header bar-royal">
             <a href="activitiDetail.html" class="button button-icon icon ion-ios-arrow-back"></a>
             <h1 class="title">确认活动：{{confirm.activiti.title}}</h1>
@@ -25,7 +25,7 @@
                 <a class="item item-icon-right" href="#" ng-repeat="timeChoice in confirm.timeChoices" ng-click="confirm.chooseTime(timeChoice);">{{timeChoice.time}}<i class="icon ion-checkmark checkmark" ng-show="timeChoice.chosen"></i></a>
                 
                 <div class="item item-divider">地点 <span class="icon ion-help unselected-warning" ng-hide="confirm.placeChosen"></span></div>
-                <a class="item" href="#" ng-repeat="placeChoice in confirm.placeChoices" ng-click="confirm.choosePlace(placeChoice);">{{placeChoice.place}})<i class="icon ion-checkmark checkmark" ng-show="placeChoice.chosen"></i></a>
+                <a class="item item-icon-right" href="#" ng-repeat="placeChoice in confirm.placeChoices" ng-click="confirm.choosePlace(placeChoice);">{{placeChoice.place}}<i class="icon ion-checkmark checkmark" ng-show="placeChoice.chosen"></i></a>
             </div>
         </ion-content>
         

@@ -21,7 +21,7 @@
             <div class="button button-icon icon {{detail.activiti.icon}}"></div>
         </ion-header-bar>
         <ion-content>
-            <div class="list">
+            <div class="list" ng-hide="detail.activiti && detail.activiti.confirmed">
                 <div class="item"><h2 class="description">{{detail.activiti.description}}</h3></div>
                 <div class="item">投票截至：{{detail.activiti.deadline}}</div>
                 
@@ -34,6 +34,16 @@
                 
                 <div class="item item-divider">地点</div>
                 <a class="item" href="#" ng-repeat="place in detail.activiti.activityChoicePlaces">{{place}} ({{detail.countPlace(place)}}人)</a>
+            </div>
+            
+            <div class="list" ng-show="detail.activiti && detail.activiti.confirmed">
+                <div class="item"><h2>本活动已确认</h2></div>
+                <div class="item"><h2>时间：{{detail.activiti.activityDate}}</h2></div>
+                <div class="item"><h2>地点：{{detail.activiti.activityPlace}}</h2></div>
+                <div class="item"><h2>举办人：{{detail.activiti.username}}</h2></div>
+                <div class="item item-divider">参加者</div>
+                <div class="item" ng-repeat="friend in detail.activiti.friendsInvited">{{friend.id.username}}</div>
+                <a href="#" class="item button button-block button-assertive">查看地图</a>
             </div>
         </ion-content>
         <ion-footer-bar class="bar bar-footer bar-calm">

@@ -14,12 +14,17 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Ifhtl5WxrfVF1VIbGrqeecfI"></script>
 	<title>根据关键字本地搜索</title>
 </head>
-<body ng-app="myapp">
-	<div id="allmap"></div>
-    <ionic-content>
-        <div id="r-result"></div>
-    </ionic-content>
-</body>
+    <body ng-app="myapp" ng-controller="mapController as mapCtrl">
+        <ion-header-bar class="bar bar-header bar-royal">
+            <a href="home.html" class="button button-icon icon ion-ios-arrow-back"></a>
+            <h1 class="title">查看地图</h1>
+            <div class="button button-icon icon {{detail.activiti.icon}}"></div>
+        </ion-header-bar>
+        <ionic-content scroll="false">
+            <div id="allmap"></div>
+            <div id="r-result"></div>
+        </ionic-content>
+    </body>
 </html>
 <script type="text/javascript">
 	// 基础功能
