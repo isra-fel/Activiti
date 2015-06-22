@@ -146,7 +146,7 @@ myapp.controller('newActivitiCtrl', function ($scope, $http, $timeout) {
         return newAct.currentDate.getFullYear() + '-' +
             prependZero(newAct.currentDate.getMonth() + 1) + '-' +
             prependZero(newAct.currentDate.getDate()) + ' ' +
-            parseEpoch(epoch);
+            parseEpoch(epoch || newAct.slots.epochTime);
 //            parseEpoch((newAct.slots.epochTime+16*3600) % 24*3600);
     };
     

@@ -35,12 +35,11 @@
                 <div class="item item-divider">地点</div>
                 <a class="item" href="#" ng-repeat="place in detail.activiti.activityChoicePlaces">{{place}} ({{detail.countPlace(place)}}人)</a>
             </div>
-            <button class="button button-block button-calm">
-                决定时间和地点
-            </button>
         </ion-content>
         <ion-footer-bar class="bar bar-footer bar-calm">
-            <h1 class="title" ng-click="detail.onVoteClick();">我要投票</h1>
+            <h1 class="title" ng-click="detail.onVoteClick();" ng-show="detail.voteShow();">我要投票</h1>
+            <h1 class="title" ng-click="detail.onConfirmClick();" ng-show="detail.confirmShow();">决定时间和地点</h1>
+            <h1 class="title" ng-show="!detail.confirmShow() && !detail.voteShow();"><span style="color:grey;">无法操作</span></h1>
         </ion-footer-bar>
     </body>
 </html>

@@ -32,8 +32,13 @@ myapp.controller('detailCtrl', function($http, $timeout) {
                 detail.activiti.description = detail.activiti.discription;
 //                console.log(detail.activiti.description);
                 detail.votes = data.takePartInRels;
+                detail.votes.forEach(function (elem) {
+                    elem.activityId = elem.id.activityId;
+                    elem.username = elem.id.username;
+                });
                 detail.activiti.activityChoiceTimes = data.activityChoiceTimes.map(function (elem) { return elem.time; });
                 detail.activiti.activityChoicePlaces = data.activityChoicePlaces.map(function (elem) { return elem.place; });
+                detail.activiti.friendsInvited = data.inviteActivityRels;
                 detail.createdByMe = detail.activiti.username === detail.user.username;
             } else {
                 alert(data.error);
@@ -60,19 +65,33 @@ myapp.controller('detailCtrl', function($http, $timeout) {
         window.localStorage.votes = JSON.stringify(detail.votes);
         window.location.href = 'vote.html';
     };
+    
+    detail.onConfirmClick = function () {
+        window.localStorage.confirmedActiviti = JSON.stringify(detail.activiti);
+        window.location.href = 'confirm.html';
+    };
+    
+    detail.outOfDate = function (deadline) {
+        var ddl = new Date(deadline);
+        return Date.now() > ddl;
+    };
+    
+    detail.voteShow = function () {
+        return detail.activiti &&
+            detail.activiti.username !== detail.user.username &&
+            ! detail.votes.some(function (elem) {
+                return elem.username === detail.user.username;
+            }) &&
+            ! detail.outOfDate(detail.activiti.deadline);
+    };
+    
+    detail.confirmShow = function () {
+        return detail.activiti &&
+            detail.votes &&
+            detail.activiti.username === detail.user.username &&
+            !detail.activiti.activityDate &&
+            !detail.activiti.activityPlace &&
+            (detail.outOfDate(detail.activiti.deadline) ||
+            detail.activiti.friendsInvited.length === detail.votes.length);
+    };
 });
-
-function onBackButtonPressed(e) {
-    'use strict';
-    window.location.href = 'activitiManage.html';
-}
-
-function onDeviceReady() {
-    'use strict';
-    document.addEventListener('backbutton', onBackButtonPressed, false);
-}
-
-function bindEvents() {
-    'use strict';
-    document.addEventListener('deviceready', onDeviceReady, false);
-}

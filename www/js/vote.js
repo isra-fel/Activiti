@@ -74,9 +74,10 @@ myapp.controller('voteCtrl', function($http, $timeout) {
             "params": {
                 "username": vote.user.username,
                 "password": vote.user.password,
+                "activityId": vote.activiti.activityId,
                 "status": vote.status,
                 "timeChoice": vote.chosenTime.time,
-                "placeChoices": vote.chosenPlace.place
+                "placeChoice": vote.chosenPlace.place
             },
             "timeout": jsonpTimeout
         }).success(function(data, status, headers, config) {

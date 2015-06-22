@@ -5,13 +5,14 @@ var myapp;
 if (myapp === undefined) {
     myapp = angular.module('myapp', ['ionic']);
 }
-myapp.controller('homeCtrl', function($http, $timeout) {
+myapp.controller('homeCtrl', function($http, $timeout, $scope) {
     'use strict';
     var home = this;
     
     home.user = JSON.parse(window.localStorage.loggedInUser || '{}');
     
     home.listCreatedHidden = false;
+    home.listOldInvitedHidden = false;
     home.listJoinedHidden = false;
     home.listOutOfDateHidden = true;
     
@@ -40,11 +41,13 @@ myapp.controller('homeCtrl', function($http, $timeout) {
             if (!data.error) {
                 home.listCreated = data.listCreated;
                 home.listJoined = data.listJoined;
+                home.listOldInvited = data.listOldInvited;
                 home.listOutOfDate = data.listOutOfDate;
                 home.listNew = data.listNew;
             } else {
                 alert(data.error);
             }
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
     
@@ -60,11 +63,12 @@ myapp.controller('homeCtrl', function($http, $timeout) {
         window.localStorage.removeItem('previewedAvatar');
         window.localStorage.removeItem('votedActiviti');
         window.localStorage.removeItem('votes');
+        window.localStorage.removeItem('confirmedActiviti');
         window.location.href = 'index.html';
     };
 });
 
-myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
+myapp.controller('friendsCtrl', function ($http, $ionicPopup, $scope) {
     'use strict';
     var friends = this;
     friends.user = JSON.parse(window.localStorage.loggedInUser || '{}');
@@ -83,6 +87,7 @@ myapp.controller('friendsCtrl', function ($http, $ionicPopup) {
             } else {
                 alert(data.error);
             }
+            $scope.$broadcast('scroll.refreshComplete');
         });
     };
     friends.sendRequest();

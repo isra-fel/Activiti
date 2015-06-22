@@ -22,7 +22,7 @@
         <ion-content>
             <div class="list">
                 <a class="item item-avatar item-icon-right" href="#" ng-repeat="friend in cfc.listOfFriends" ng-click="cfc.onItemClick(friend);">
-                    <img ng-src="../img/{{friend.avatarURL || 'default.png'}}">
+                    <img ng-src="../img/{{friend.icon || 'default.png'}}">
                     <h2 class="title">{{friend.nickname}}</h2>
                     <i class="icon ion-checkmark checkmark" ng-show="friend.chosen"></i>
                 </a>

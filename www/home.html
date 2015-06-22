@@ -21,15 +21,11 @@
                     <a href="newActiviti.html" class="button button-icon icon ion-plus-round"></a>
                 </ion-header-bar>
                 <ion-content>
+                    <ion-refresher
+                        pulling-text="刷新..."
+                        on-refresh="home.sendRequest()">
+                    </ion-refresher>
                     <div class="list">
-                        <div class="item item-divider" ng-click="home.listCreatedHidden = !home.listCreatedHidden;">
-                            发起的活动
-                        </div>
-                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listCreatedHidden" ng-repeat="activiti in home.listCreated | orderBy:deadline" ng-click="home.viewDetail(activiti);">
-                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
-                            {{activiti.title}}
-                        </a>
-                        
                         <div class="item item-divider" ng-click="home.listJoinedHidden = !home.listJoinedHidden;">
                             受邀的活动
                             <span class="badge badge-assertive" ng-hide="!home.listNew.length">{{home.listNew.length}}</span>
@@ -38,7 +34,23 @@
                             <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
                             {{activiti.title}}
                         </a>
+                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listOldInvitedHidden" ng-repeat="activiti in home.listOldInvited | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                        
+                        <div class="item item-divider" ng-click="home.listOldInvitedHidden = !home.listOldInvitedHidden;">
+                            决定参加的活动
+                        </div>
                         <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listJoinedHidden" ng-repeat="activiti in home.listJoined | orderBy:deadline" ng-click="home.viewDetail(activiti);">
+                            <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
+                            {{activiti.title}}
+                        </a>
+                        
+                        <div class="item item-divider" ng-click="home.listCreatedHidden = !home.listCreatedHidden;">
+                            发起的活动
+                        </div>
+                        <a class="item item-icon-left animate-hide" href="#" ng-hide="home.listCreatedHidden" ng-repeat="activiti in home.listCreated | orderBy:deadline" ng-click="home.viewDetail(activiti);">
                             <i class="icon {{activiti.icon || 'ion-pricetag'}}"></i>
                             {{activiti.title}}
                         </a>
@@ -60,9 +72,13 @@
                     <a href="#" ng-click="friends.showPopup();" class="button button-icon icon ion-plus-round"></a>
                 </ion-header-bar>
                 <ion-content>
+                    <ion-refresher
+                        pulling-text="刷新..."
+                        on-refresh="friends.sendRequest()">
+                    </ion-refresher>
                     <div class="list">
                         <a class="item item-avatar" href="#" ng-repeat="friend in friends.listOfFriends">
-                            <img ng-src="img/{{friend.avatarURL || 'default.png'}}">
+                            <img ng-src="img/{{friend.icon || 'default.png'}}">
                             <h2 class="title">{{friend.nickname}}</h2>
                         </a>
                     </div>
