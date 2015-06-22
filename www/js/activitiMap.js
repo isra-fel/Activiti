@@ -102,6 +102,8 @@ myapp.controller('mapController', function () {
               plan.getDistance(true));  //获取距离
 	};
     
+    mapCtrl.getLocation();
+    
     //for PC test
 //    mapCtrl.gotLocation({coords:{latitude: 31.192653, longitude: 121.589866}});
 });
